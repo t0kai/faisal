@@ -121,6 +121,14 @@ Forgetting Production is why a variable "works locally but not live".
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://your-domain.com` | Canonical URLs, sitemap, hreflang, OG images. Without it these point at the preview URL, which confuses Google. |
 
+**Include the `https://`.** A bare `your-domain.com` used to crash the build with
+an opaque *"error occurred in the Server Components render"* on a random page.
+The config now repairs a missing scheme, a trailing slash and odd casing
+automatically — but the full origin is still the correct thing to enter.
+
+`NEXT_PUBLIC_*` variables are **inlined at build time**, so changing this value
+does nothing until you redeploy.
+
 ### For the contact form
 
 | Variable | Value |
@@ -233,5 +241,6 @@ The only thing you pay for is the domain.
 | Build fails on `next/font` | Transient Google Fonts fetch failure — just redeploy |
 | Contact form returns an error | `RESEND_API_KEY` or `CONTACT_FROM_EMAIL` unset, or the sender domain is unverified in Resend |
 | Sitemap shows `localhost` | `NEXT_PUBLIC_SITE_URL` not set in Production, or set but not redeployed |
+| `Error occurred prerendering page` + `Server Components render` + a `digest` | Almost always a malformed `NEXT_PUBLIC_SITE_URL`. Now auto-repaired; if it persists, open the failing deployment → **Building** log and look for the line above the digest. |
 | Images broken after a day | Notion-hosted file URLs expired — use the `Cover URL` property instead (`NOTION-SETUP.md`, step 6) |
 | Preview URL appearing in Google | It shouldn't — `robots.ts` blocks previews. Check `VERCEL_ENV` is `preview` on that deployment. |

@@ -31,6 +31,40 @@ export const LOCALE_TAGS: Record<Locale, string> = {
   fr: 'fr',
 }
 
+/**
+ * Normalises whatever is in NEXT_PUBLIC_SITE_URL into a valid absolute origin.
+ *
+ * `new URL()` in the root layout's metadataBase throws on a bare domain, and
+ * Next reports that as an opaque "error occurred in the Server Components
+ * render" on a random page — one of the least debuggable failures there is.
+ * So we repair the three mistakes people actually make instead:
+ *
+ *   abdullahfaisal.com        → https://abdullahfaisal.com
+ *   https://site.com/         → https://site.com     (trailing slash)
+ *   HTTPS://Site.com          → https://site.com     (case)
+ *
+ * Anything genuinely unparseable throws here, at config load, with a message
+ * that names the variable.
+ */
+function resolveSiteUrl(): string {
+  const raw =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '') ||
+    'http://localhost:3000'
+
+  // Add a scheme if the value is a bare domain.
+  const withScheme = /^https?:\/\//i.test(raw) ? raw : `https://${raw.replace(/^\/+/, '')}`
+
+  try {
+    return new URL(withScheme).origin
+  } catch {
+    throw new Error(
+      `Invalid NEXT_PUBLIC_SITE_URL: "${raw}". ` +
+        'Use a full origin including the scheme, e.g. https://abdullahfaisal.com',
+    )
+  }
+}
+
 export const site = {
   name: 'Abdullah Bin Hossain',
   shortName: 'Abdullah Faisal',
@@ -38,10 +72,11 @@ export const site = {
   jobTitle: 'Power Business Professional',
   region: 'APAC',
 
-  /** Set NEXT_PUBLIC_SITE_URL in Vercel. Falls back to the preview URL, then localhost. */
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
+  /**
+   * Always a valid origin with no trailing slash — see resolveSiteUrl above.
+   * Set NEXT_PUBLIC_SITE_URL in Vercel; falls back to the preview URL, then localhost.
+   */
+  url: resolveSiteUrl(),
 
   email: 'faisal473345@gmail.com',
   phone: '+8801719473385',
