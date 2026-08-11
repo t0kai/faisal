@@ -30,17 +30,17 @@ export default async function ServicesPage({ params }: Props) {
       <PageTop title={t.rich('services.title', { em: c => <em>{c}</em> })} lede={t('services.lede')} />
 
       <section className="section">
-        <div className="shell"><Plates showIcons /></div>
+        <div className="shell"><Plates locale={locale} showIcons /></div>
       </section>
 
       <section className="section-tight">
         <div className="shell">
           <SectionHead eyebrow={t('home.sections.coverage')} title={t.rich('tech.title', { em: c => <em>{c}</em> })} />
-          <TechGrid projects={projects} />
+          <TechGrid locale={locale} projects={projects} />
         </div>
       </section>
 
-      <CtaBand />
+      <CtaBand locale={locale} />
       <JsonLd data={[
         serviceSchema(locale, t('services.title'), t('services.lede')),
         breadcrumbSchema(locale, [{ name: t('nav.home'), path: '/' }, { name: t('nav.services'), path: '/services' }]),

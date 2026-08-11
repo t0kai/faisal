@@ -30,11 +30,11 @@ export default async function ProjectsPage({ params }: Props) {
       <PageTop title={t.rich('projects.title', { em: c => <em>{c}</em> })} lede={t('projects.lede')} />
       <section className="section">
         <div className="shell">
-          <Register projects={projects} />
+          <Register locale={locale} projects={projects} />
           <Reveal className="notice mt-[clamp(28px,4vw,48px)]">{t('projects.disclaimer')}</Reveal>
         </div>
       </section>
-      <CtaBand />
+      <CtaBand locale={locale} />
       <JsonLd data={breadcrumbSchema(locale, [
         { name: t('nav.home'), path: '/' },
         { name: t('nav.projects'), path: '/projects' },

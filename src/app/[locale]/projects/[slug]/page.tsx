@@ -123,7 +123,7 @@ export default async function ProjectPage({ params }: Props) {
         )}
       </article>
 
-      <CtaBand />
+      <CtaBand locale={locale} />
       <JsonLd data={[
         projectSchema(locale, project),
         breadcrumbSchema(locale, [

@@ -38,7 +38,7 @@ export default async function AboutPage({ params }: Props) {
       <section className="section">
         <div className="shell">
           <SectionHead eyebrow={t('about.sections.career')} title={t('about.careerTitle')} />
-          <Timeline />
+          <Timeline locale={locale} />
         </div>
       </section>
 
@@ -59,8 +59,8 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      <Figures />
-      <CtaBand />
+      <Figures locale={locale} />
+      <CtaBand locale={locale} />
       <JsonLd data={breadcrumbSchema(locale, [
         { name: t('nav.home'), path: '/' },
         { name: t('nav.about'), path: '/about' },

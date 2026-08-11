@@ -16,10 +16,6 @@ const config: NextConfig = {
     ],
   },
 
-  experimental: {
-    optimizePackageImports: ['next-intl'],
-  },
-
   async headers() {
     return [
       {

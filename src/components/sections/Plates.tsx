@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Icon, type IconName } from '@/components/primitives/Icon'
+import type { Locale } from '@/config/site'
 
 /**
  * The four capabilities. Keys map to `capabilities.items.*` in the message
@@ -14,8 +15,8 @@ export const CAPABILITIES = [
   { key: 'representation', icon: 'wrench' },
 ] as const satisfies ReadonlyArray<{ key: string; icon: IconName }>
 
-export async function Plates({ showIcons = false }: { showIcons?: boolean }) {
-  const t = await getTranslations('capabilities.items')
+export async function Plates({ locale, showIcons = false }: { locale: Locale; showIcons?: boolean }) {
+  const t = await getTranslations({ locale, namespace: 'capabilities.items' })
 
   return (
     <div className="plates">

@@ -1,11 +1,11 @@
 import { getTranslations } from 'next-intl/server'
-import { site } from '@/config/site'
+import { site, type Locale } from '@/config/site'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Rail } from '@/components/primitives/Rail'
 import { Button } from '@/components/primitives/Button'
 
-export async function CtaBand() {
-  const t = await getTranslations('cta')
+export async function CtaBand({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: 'cta' })
 
   return (
     <div className="cta-band">

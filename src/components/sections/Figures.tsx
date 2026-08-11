@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server'
-import { site } from '@/config/site'
+import { site, type Locale } from '@/config/site'
 import { Reveal } from '@/components/primitives/Reveal'
 
 /**
@@ -13,8 +13,8 @@ const FIGURES = [
   { key: 'partners', value: () => site.stats.partners, unit: '+' },
 ] as const
 
-export async function Figures() {
-  const t = await getTranslations('home.stats')
+export async function Figures({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: 'home.stats' })
 
   return (
     <div className="figures">

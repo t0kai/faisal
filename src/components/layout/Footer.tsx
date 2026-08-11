@@ -1,12 +1,12 @@
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { NAV, NAV_PATH, LOCALES, LOCALE_NAMES, site } from '@/config/site'
+import { NAV, NAV_PATH, LOCALES, LOCALE_NAMES, site, type Locale } from '@/config/site'
 import { TECHNOLOGIES } from '@/content/types'
 import { Sigil, SocialIcon, Icon } from '@/components/primitives/Icon'
 import { socialLinks } from '@/lib/social'
 
-export async function Footer() {
-  const t = await getTranslations()
+export async function Footer({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale })
 
   return (
     <footer className="site-footer">

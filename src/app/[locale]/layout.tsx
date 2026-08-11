@@ -84,7 +84,7 @@ export default async function LocaleLayout({
           </a>
           <Header />
           <main id="main">{children}</main>
-          <Footer />
+          <Footer locale={locale} />
         </NextIntlClientProvider>
         <JsonLd data={personSchema(locale, t('home.description'))} />
       </body>

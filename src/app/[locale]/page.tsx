@@ -42,8 +42,8 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <Hero />
-      <Figures />
+      <Hero locale={locale} />
+      <Figures locale={locale} />
 
       <section className="section">
         <div className="shell">
@@ -52,7 +52,7 @@ export default async function HomePage({ params }: Props) {
             title={t.rich('capabilities.title', { em: c => <em>{c}</em> })}
             lede={t('capabilities.lede')}
           />
-          <Plates />
+          <Plates locale={locale} />
         </div>
       </section>
 
@@ -63,7 +63,7 @@ export default async function HomePage({ params }: Props) {
             title={t.rich('register.title', { em: c => <em>{c}</em> })}
             lede={t('register.lede')}
           />
-          <Register projects={featured} />
+          <Register locale={locale} projects={featured} />
           <Reveal className="reg-foot">
             <span className="t-mono" style={{ color: 'var(--ink-3)' }}>
               {t('register.showing', { shown: featured.length, total: projects.length })}
@@ -88,7 +88,7 @@ export default async function HomePage({ params }: Props) {
             eyebrow={t('home.sections.coverage')}
             title={t.rich('tech.title', { em: c => <em>{c}</em> })}
           />
-          <TechGrid projects={projects} />
+          <TechGrid locale={locale} projects={projects} />
         </div>
       </section>
 
@@ -100,12 +100,12 @@ export default async function HomePage({ params }: Props) {
               title={t.rich('insights.title', { em: c => <em>{c}</em> })}
               lede={t('insights.lede')}
             />
-            <PostList posts={posts} />
+            <PostList locale={locale} posts={posts} />
           </div>
         </section>
       )}
 
-      <CtaBand />
+      <CtaBand locale={locale} />
     </>
   )
 }

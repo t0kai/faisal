@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { Reveal } from '@/components/primitives/Reveal'
+import type { Locale } from '@/config/site'
 
 /**
  * Career history from the CV.
@@ -50,8 +51,8 @@ export const CAREER = [
   },
 ] as const
 
-export async function Timeline() {
-  const t = await getTranslations('about.roles')
+export async function Timeline({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: 'about.roles' })
 
   return (
     <div>

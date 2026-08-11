@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
-import { site } from '@/config/site'
+import { site, type Locale } from '@/config/site'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Rail } from '@/components/primitives/Rail'
 import { Button } from '@/components/primitives/Button'
 import { Icon } from '@/components/primitives/Icon'
 
-export async function Hero() {
-  const t = await getTranslations('home.hero')
+export async function Hero({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: 'home.hero' })
 
   return (
     <div className="hero">

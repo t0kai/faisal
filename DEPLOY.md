@@ -188,6 +188,47 @@ case they change.
 
 ---
 
+## If the build fails with a `digest` and no real message
+
+```
+Error occurred prerendering page "/en/about"
+[Error: An error occurred in the Server Components render...] { digest: '...' }
+```
+
+Next.js hides the real message in production builds. Three ways to see it,
+fastest first.
+
+### 1. Run preflight
+
+```bash
+npm run preflight
+```
+
+It checks the things that produce exactly this error — a malformed
+`NEXT_PUBLIC_SITE_URL`, `CONTENT_SOURCE=notion` without credentials, a missing
+or unbalanced translation key, a missing asset. It also runs automatically
+before every `npm run build`.
+
+### 2. Build locally — the message is not masked
+
+```bash
+npm install
+npm run build
+```
+
+Locally Next prints the actual error and the file it came from. This is the
+single most useful thing to do, and it takes two minutes.
+
+### 3. Read the Vercel log properly
+
+The real error is usually **20–40 lines above** the digest block. In Vercel:
+your project → **Deployments** → click the failed one → **Building** → scroll up
+from the digest and look for the first `Error:` line.
+
+Do not just read the tail of the log — the tail is the summary, not the cause.
+
+---
+
 ## Check it worked
 
 Replace `SITE` with your URL:

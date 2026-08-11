@@ -4,6 +4,7 @@ import type { Project, Stage } from '@/content/types'
 import { capacityParts } from '@/lib/format'
 import { Reveal } from '@/components/primitives/Reveal'
 import { cn } from '@/lib/cn'
+import type { Locale } from '@/config/site'
 
 /**
  * How loudly each stage reads. Early stages get a hollow marker, delivered
@@ -19,8 +20,8 @@ const STAGE_TONE: Record<Stage, 'off' | 'mid' | 'on'> = {
   Operational: 'on',
 }
 
-export async function Register({ projects }: { projects: Project[] }) {
-  const t = await getTranslations('register')
+export async function Register({ locale, projects }: { locale: Locale; projects: Project[] }) {
+  const t = await getTranslations({ locale, namespace: 'register' })
 
   return (
     <div className="register">

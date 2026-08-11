@@ -29,10 +29,10 @@ export default async function InsightsPage({ params }: Props) {
       <PageTop title={t.rich('insights.pageTitle', { em: c => <em>{c}</em> })} lede={t('insights.pageLede')} />
       <section className="section">
         <div className="shell">
-          {posts.length ? <PostList posts={posts} /> : <p className="notice">{t('insights.empty')}</p>}
+          {posts.length ? <PostList locale={locale} posts={posts} /> : <p className="notice">{t('insights.empty')}</p>}
         </div>
       </section>
-      <CtaBand />
+      <CtaBand locale={locale} />
       <JsonLd data={breadcrumbSchema(locale, [
         { name: t('nav.home'), path: '/' },
         { name: t('nav.insights'), path: '/insights' },

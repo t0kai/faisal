@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from 'next-intl/server'
+import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import type { Insight } from '@/content/types'
 import type { Locale } from '@/config/site'
@@ -6,9 +6,8 @@ import { formatDate } from '@/lib/format'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Icon } from '@/components/primitives/Icon'
 
-export async function PostList({ posts }: { posts: Insight[] }) {
-  const t = await getTranslations()
-  const locale = (await getLocale()) as Locale
+export async function PostList({ locale, posts }: { locale: Locale; posts: Insight[] }) {
+  const t = await getTranslations({ locale })
 
   return (
     <div>

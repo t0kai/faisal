@@ -3,6 +3,7 @@ import { Link } from '@/i18n/navigation'
 import { TECHNOLOGIES, type Technology, type Project } from '@/content/types'
 import { Icon, type IconName } from '@/components/primitives/Icon'
 import { Reveal } from '@/components/primitives/Reveal'
+import type { Locale } from '@/config/site'
 
 const TECH_ICON: Record<Technology, IconName> = {
   'Solar PV': 'solar',
@@ -15,8 +16,8 @@ const TECH_ICON: Record<Technology, IconName> = {
 }
 
 /** Counts are derived from the register, so they can never drift out of sync. */
-export async function TechGrid({ projects }: { projects: Project[] }) {
-  const t = await getTranslations()
+export async function TechGrid({ locale, projects }: { locale: Locale; projects: Project[] }) {
+  const t = await getTranslations({ locale })
   const counts = new Map<Technology, number>()
   for (const p of projects) for (const tech of p.technology) counts.set(tech, (counts.get(tech) ?? 0) + 1)
 

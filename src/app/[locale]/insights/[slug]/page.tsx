@@ -94,7 +94,7 @@ export default async function InsightPage({ params }: Props) {
         </section>
       </article>
 
-      <CtaBand />
+      <CtaBand locale={locale} />
       <JsonLd data={[
         articleSchema(locale, post),
         breadcrumbSchema(locale, [
