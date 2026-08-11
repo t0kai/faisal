@@ -28,5 +28,10 @@
     "@types/react-dom": "^19.1.0",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.7.0"
-  }
+  },
+  "overrides": {
+    "postcss": "^8.5.26",
+    "sharp": "^0.35.3"
+  },
+  "//overrides": "Next 15.5.x pins older postcss and sharp that carry HIGH advisories; the upstream fix only lands in Next 16 (semver-major). These overrides pull the patched releases instead. Verified: npm audit \u2192 0 vulnerabilities, build passes. Remove them when moving to Next 16."
 }

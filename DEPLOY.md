@@ -273,6 +273,25 @@ The only thing you pay for is the domain.
 
 ---
 
+## Making Vercel build the code you just tested
+
+If `npm run build` succeeds on your Mac but Vercel fails, Vercel is not building
+the same thing. In order of likelihood:
+
+1. **Vercel is on an older commit.** Deployments → click the failed one → check
+   the commit hash and message against your latest `git log`. If they differ,
+   push again.
+2. **A stale build cache.** Deployments → ⋯ on the latest → **Redeploy** →
+   **untick "Use existing Build Cache"** → Redeploy.
+3. **An environment variable set in Vercel but not on your machine.** Settings →
+   Environment Variables. Anything there that is not in your local `.env.local`
+   is a difference between the two builds. `CONTENT_SOURCE=notion` without
+   credentials is the one that breaks a build outright — delete it or set it to
+   `local`.
+4. **Node version.** Settings → General → Node.js Version → **22.x**.
+
+---
+
 ## If something goes wrong
 
 | Symptom | Cause |
