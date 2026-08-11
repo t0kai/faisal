@@ -55,18 +55,14 @@
       "eyebrow": "01 — Kraftwerksentwicklung im Versorgungsmaßstab",
       "title": "Projekte, die den <em>Financial Close tatsächlich erreichen.</em>",
       "lede": "13+ Jahre Entwicklung von Solar-, Speicher-, LNG- und Gasprojekten im Versorgungsmaßstab in Bangladesch — von Machbarkeitsstudie und Fläche über PPA-Verhandlung und Genehmigungen bis zum Close. Kapital und Technologie sind der einfache Teil. Ich übernehme die Umsetzung vor Ort.",
-      "ctaPrimary": "Projektregister ansehen",
-      "ctaSecondary": "Lebenslauf laden",
+      "ctaPrimary": "Beratungstermin buchen",
+      "ctaSecondary": "Projektregister ansehen",
       "availability": "Verfügbar für neue Projektmandate — Dhaka, GMT+6"
     },
     "stats": {
       "years": {
         "label": "Erfahrung",
         "note": "Durchgehend seit 2013"
-      },
-      "capacity": {
-        "label": "Begleitete Kapazität",
-        "note": "Über den gesamten Entwicklungszyklus"
       },
       "projects": {
         "label": "Projekte",
@@ -75,14 +71,18 @@
       "partners": {
         "label": "Gegenparteien",
         "note": "Japan · China · Korea · Golf · USA"
+      },
+      "proposals": {
+        "label": "Gewonnene Angebote",
+        "note": "Von ihm erstellte Solar-Ausschreibungsunterlagen"
       }
     },
     "sections": {
       "capability": "02 / Kompetenz",
       "register": "03 / Register",
-      "coverage": "05 / Abdeckung",
       "insights": "06 / Insights",
-      "partners": "04 / Gegenparteien"
+      "partners": "04 / Gegenparteien",
+      "portfolio": "05 / Portfolio"
     }
   },
   "capabilities": {
@@ -136,7 +136,6 @@
     }
   },
   "tech": {
-    "title": "Konventionell und erneuerbar — <em>der gesamte Erzeugungsmix.</em>",
     "Solar PV": "Solar PV",
     "BESS": "BESS",
     "LNG & FSRU": "LNG & FSRU",
@@ -175,7 +174,11 @@
       "rangunia": "Projektleiter und lokaler Vertreter",
       "xsergy": "Manager, Operations",
       "reliance": "Assistant Manager, LNG & FSRU",
-      "om": "Elektroingenieur"
+      "om": "Elektroingenieur",
+      "metito": "Unabhängiger Berater",
+      "symbior": "Berater für erneuerbare Energien",
+      "eclectic": "Executive Consultant",
+      "aloron": "Geschäftsführer"
     },
     "education": {
       "title": "Ausbildung",
@@ -184,16 +187,19 @@
     "languages": {
       "title": "Sprachen",
       "items": "Bengalisch — Muttersprache|Englisch — verhandlungssicher"
-    }
+    },
+    "introBody": "Zehn Organisationen in dreizehn Jahren, von der Dokumentenkontrolle in Owner’s-Engineering-Studien bis zur Leitung der Projektentwicklung für Erneuerbare. Der rote Faden bleibt derselbe: ein Projekt über den Punkt hinwegbringen, an dem Projekte hier üblicherweise stehen bleiben."
   },
   "services": {
     "title": "Vier Wege der <em>Zusammenarbeit.</em>",
-    "lede": "Jedes Mandat ist auf ein definiertes Ergebnis zugeschnitten, mit Festpreis oder Retainer. Keine offene Beratung."
+    "lede": "Jedes Mandat ist auf ein definiertes Ergebnis zugeschnitten, mit Festpreis oder Retainer. Keine offene Beratung.",
+    "photoAlt": "Abdullah Bin Hossain in einer Projektbesprechung, Dhaka"
   },
   "projects": {
     "title": "<em>Projektregister.</em>",
     "lede": "Über dreißig Projekte in Solar, Speicher, LNG, Gas, Kohle und Übertragung — jeweils mit dem tatsächlich erreichten Stand.",
-    "disclaimer": "Die Stände geben den Punkt wieder, den jedes Projekt während meiner Mitwirkung erreicht hat, nicht zwingend den heutigen Status. Einige Sponsoren erscheinen als vertraulich, wo eine Vertraulichkeitsvereinbarung oder eine laufende Verhandlung gilt."
+    "disclaimer": "Die Stände geben den Punkt wieder, den jedes Projekt während meiner Mitwirkung erreicht hat, nicht zwingend den heutigen Status. Einige Sponsoren erscheinen als vertraulich, wo eine Vertraulichkeitsvereinbarung oder eine laufende Verhandlung gilt.",
+    "photoAlt": "Abdullah Bin Hossain bei der Prüfung von Projektunterlagen, Dhaka"
   },
   "project": {
     "technology": "Technologie",
@@ -233,13 +239,14 @@
       "errorGeneric": "Etwas ist schiefgelaufen. Bitte schreiben Sie mir direkt.",
       "errorRateLimited": "Zu viele Nachrichten gesendet. Bitte später erneut versuchen.",
       "privacy": "Ihre Angaben werden ausschließlich zur Beantwortung dieser Anfrage verwendet."
-    }
+    },
+    "hoursLabel": "Beratungszeiten"
   },
   "cta": {
-    "eyebrow": "06 / Kontakt",
+    "eyebrow": "07 / Kontakt",
     "title": "Nennen Sie mir Technologie, Kapazität und <em>wo es hakt.</em>",
     "body": "Ich sage Ihnen ehrlich, wie der Weg von hier aussieht — auch dann, wenn die Antwort lautet, dass es nicht funktioniert.",
-    "primary": "Gespräch beginnen",
+    "primary": "Beratungstermin buchen",
     "secondary": "WhatsApp"
   },
   "footer": {
@@ -252,5 +259,17 @@
     "title": "Diese Seite existiert nicht.",
     "body": "Der Link ist möglicherweise veraltet. Projektregister und Insights sind einen Klick entfernt.",
     "cta": "Zurück zur Startseite"
+  },
+  "portfolio": {
+    "title": "Woraus das Portfolio <em>tatsächlich besteht.</em>",
+    "lede": "Aus dem Projektregister dieser Seite gezählt, nicht zur Wirkung aufgerundet. Die Kapazität ist die Summe der Projekte je Technologie.",
+    "col": {
+      "technology": "Technologie",
+      "projects": "Projekte",
+      "capacity": "Kapazität"
+    },
+    "projectCount": "{count, plural, =0 {keine} =1 {1 Projekt} other {# Projekte}}",
+    "notMeasuredInMW": "nicht in Megawatt gemessen",
+    "footnote": "Ein Projekt mit zwei Technologien wird in beiden Zeilen gezählt, die Zeilen ergeben daher keine Portfoliosumme. Übertragungsprojekte werden in Kilovolt statt Megawatt ausgeschrieben."
   }
 }

@@ -55,18 +55,14 @@
       "eyebrow": "01 — Utility-scale power development",
       "title": "Power projects that reach <em>financial close.</em>",
       "lede": "13+ years developing utility-scale solar, storage, LNG and gas projects in Bangladesh — from feasibility and land through PPA negotiation, permitting and close. The capital and the technology are the easy part. I handle the ground.",
-      "ctaPrimary": "View project register",
-      "ctaSecondary": "Download CV",
+      "ctaPrimary": "Book a consultation",
+      "ctaSecondary": "View project register",
       "availability": "Available for new project mandates — Dhaka, GMT+6"
     },
     "stats": {
       "years": {
         "label": "Experience",
         "note": "Continuous, since 2013"
-      },
-      "capacity": {
-        "label": "Capacity engaged",
-        "note": "Across the development lifecycle"
       },
       "projects": {
         "label": "Projects",
@@ -75,14 +71,18 @@
       "partners": {
         "label": "Counterparties",
         "note": "Japan · China · Korea · Gulf · USA"
+      },
+      "proposals": {
+        "label": "Proposals won",
+        "note": "Solar tender documents authored"
       }
     },
     "sections": {
       "capability": "02 / Capability",
       "register": "03 / Register",
-      "coverage": "05 / Coverage",
       "insights": "06 / Insights",
-      "partners": "04 / Counterparties"
+      "partners": "04 / Counterparties",
+      "portfolio": "05 / Portfolio"
     }
   },
   "capabilities": {
@@ -136,7 +136,6 @@
     }
   },
   "tech": {
-    "title": "Conventional and renewable — <em>the whole generation stack.</em>",
     "Solar PV": "Solar PV",
     "BESS": "BESS",
     "LNG & FSRU": "LNG & FSRU",
@@ -175,7 +174,11 @@
       "rangunia": "Project Manager & Local Representative",
       "xsergy": "Manager, Operations",
       "reliance": "Assistant Manager, LNG & FSRU",
-      "om": "Electrical Engineer"
+      "om": "Electrical Engineer",
+      "metito": "Independent Consultant",
+      "symbior": "Renewable Energy Consultant",
+      "eclectic": "Executive Consultant",
+      "aloron": "Chief Executive Officer"
     },
     "education": {
       "title": "Education",
@@ -184,16 +187,19 @@
     "languages": {
       "title": "Languages",
       "items": "Bengali — mother tongue|English — full professional proficiency"
-    }
+    },
+    "introBody": "Ten organisations in thirteen years, from document control on owner’s engineering studies to directing renewable development. The thread does not change: getting a project past the point where projects here usually stall."
   },
   "services": {
     "title": "Four ways to <em>engage.</em>",
-    "lede": "Each engagement is scoped to a defined deliverable, with a fixed fee or a retainer. No open-ended consulting."
+    "lede": "Each engagement is scoped to a defined deliverable, with a fixed fee or a retainer. No open-ended consulting.",
+    "photoAlt": "Abdullah Bin Hossain in a project meeting, Dhaka"
   },
   "projects": {
     "title": "<em>Project register.</em>",
     "lede": "Thirty-plus projects across solar, storage, LNG, gas, coal and transmission — each shown with the stage it actually reached.",
-    "disclaimer": "Stages reflect the point each project reached during my involvement, not necessarily its status today. Several sponsors are shown as confidential where a non-disclosure agreement or a live negotiation applies."
+    "disclaimer": "Stages reflect the point each project reached during my involvement, not necessarily its status today. Several sponsors are shown as confidential where a non-disclosure agreement or a live negotiation applies.",
+    "photoAlt": "Abdullah Bin Hossain reviewing project documentation, Dhaka"
   },
   "project": {
     "technology": "Technology",
@@ -233,13 +239,14 @@
       "errorGeneric": "Something went wrong. Please email me directly.",
       "errorRateLimited": "Too many messages sent. Please try again later.",
       "privacy": "Your details are used only to reply to this enquiry."
-    }
+    },
+    "hoursLabel": "Consultation hours"
   },
   "cta": {
-    "eyebrow": "06 / Contact",
+    "eyebrow": "07 / Contact",
     "title": "Tell me the technology, the capacity, and <em>where you're stuck.</em>",
     "body": "I’ll tell you honestly what the route from here looks like — including when the answer is that it doesn’t work.",
-    "primary": "Start a conversation",
+    "primary": "Book a consultation",
     "secondary": "WhatsApp"
   },
   "footer": {
@@ -252,5 +259,17 @@
     "title": "This page does not exist.",
     "body": "The link may be out of date. The project register and insights are both a click away.",
     "cta": "Back to home"
+  },
+  "portfolio": {
+    "title": "What the portfolio is actually <em>made of.</em>",
+    "lede": "Counted from the register on this site, not rounded up for effect. Capacity is the sum of the projects engaged in each technology.",
+    "col": {
+      "technology": "Technology",
+      "projects": "Projects",
+      "capacity": "Capacity"
+    },
+    "projectCount": "{count, plural, =0 {none} =1 {1 project} other {# projects}}",
+    "notMeasuredInMW": "not measured in megawatts",
+    "footnote": "A project using two technologies is counted under both, so the rows do not sum to a portfolio total. Transmission work is tendered in kilovolts rather than megawatts."
   }
 }

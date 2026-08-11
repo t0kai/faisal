@@ -1,5 +1,6 @@
 import type { Locale } from '@/config/site'
-import type { ContentSource, Project, Insight, Technology, Stage } from '../types'
+import type { ContentSource, Project, Insight } from '../types'
+import { coerceTechnology, coerceStage } from '../types'
 import { notion, INSIGHTS_DS, PROJECTS_DS } from './client'
 import { pTitle, pText, pSelect, pMulti, pNumber, pCheck, pUrl, pDate } from './props'
 import { renderBlocks, plain } from './render'
@@ -38,13 +39,28 @@ async function bodyOf(pageId: string): Promise<string> {
 function toProject(page: any, body: string): Project {
   const p = page.properties
   const confidential = pCheck(p, 'Confidential')
+  const title = pTitle(p, 'Title')
+
+  // Drop unrecognised Technology options rather than letting them reach a
+  // translation lookup that has no matching key.
+  const technology = pMulti(p, 'Technology').flatMap(raw => {
+    const match = coerceTechnology(raw)
+    if (!match) console.warn(`[notion] "${title}": unknown Technology "${raw}" — ignored. Allowed: see TECHNOLOGIES in src/content/types.ts`)
+    return match ? [match] : []
+  })
+
+  const rawStage = pSelect(p, 'Stage')
+  const stage = coerceStage(rawStage)
+  if (rawStage && stage !== rawStage) {
+    console.warn(`[notion] "${title}": Stage "${rawStage}" not recognised — using "${stage}"`)
+  }
   return {
     slug: pText(p, 'Slug'),
-    title: pTitle(p, 'Title'),
+    title,
     summary: pText(p, 'Summary') || plain(body).slice(0, 180),
     capacityMW: pNumber(p, 'Capacity MW'),
-    technology: pMulti(p, 'Technology') as Technology[],
-    stage: (pSelect(p, 'Stage') || 'Development') as Stage,
+    technology,
+    stage,
     client: confidential ? null : pText(p, 'Client') || null,
     confidential,
     location: pText(p, 'Location') || null,
@@ -64,7 +80,7 @@ function toInsight(page: any, body: string): Insight {
     slug: pText(p, 'Slug'),
     title: pTitle(p, 'Title'),
     excerpt: pText(p, 'Excerpt'),
-    type: (pSelect(p, 'Type') || 'Article') as Insight['type'],
+    type: pSelect(p, 'Type') === 'Video' ? 'Video' : 'Article',
     videoUrl: pUrl(p, 'Video URL'),
     cover: pUrl(p, 'Cover URL'),
     tags: pMulti(p, 'Tags'),

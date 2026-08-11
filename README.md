@@ -38,18 +38,17 @@ JavaScript.
 
 | # | Item | Where it goes |
 |---|---|---|
-| 1 | **Professional portrait**, 2400 px, 3:4 portrait crop | replace `public/portrait.jpg` |
-| 2 | **CV as PDF** | replace `public/abdullah-faisal-cv.pdf` |
-| 3 | **Confirm the "20 GW+" claim** — see *Claims to confirm* below | `src/config/site.ts` → `stats` |
-| 4 | **Which clients may be named publicly** (NDAs) | `src/config/partners.ts`, `src/content/local/projects.ts` |
-| 5 | **Verify every project `stage`** against reality | `src/content/local/projects.ts` |
-| 6 | **Facebook profile URL** | `src/config/site.ts` → `socials.facebook` |
+| 1 | **Higher-resolution portrait**, 2000 px+ | replace `public/portrait.jpg`. The current image was extracted from the CV at 174×248 and upscaled — it is capped at 320px on screen so it stays sharp, but a real photo would let the frame go larger. |
+| 2 | **Confirm the headline figures** — see *Claims to confirm* below | `src/config/site.ts` → `stats` |
+| 3 | **Which clients may be named publicly** (NDAs) | `src/config/partners.ts`, `src/content/local/projects.ts` |
+| 4 | **Verify every project `stage`** against reality | `src/content/local/projects.ts` |
 
 ### Needed soon after launch
 
 | Item | Where |
 |---|---|
 | Domain name | Vercel → Domains, and `NEXT_PUBLIC_SITE_URL` |
+| Decide whether to publish a downloadable CV | removed at your request; `Button icon="download"` in `Hero.tsx` would bring it back |
 | Resend API key + verified sending domain | `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` |
 | Real article copy | `src/content/local/insights.ts` |
 | Project case-study bodies (`body` field) | `src/content/local/projects.ts` |
@@ -63,11 +62,13 @@ JavaScript.
 The site's credibility rests on these being exact. A foreign sponsor or lender
 **will** probe them.
 
-1. **"20 GW+ capacity engaged"** is the sum of every project touched at any
-   stage — feasibility, bidding, development, supervision. It is *not* capacity
-   built and energised. Either confirm the figure and keep the qualifier
-   ("across the development lifecycle"), or replace it with a number Faisal can
-   defend in a meeting.
+1. **The headline stat is now "1,500 MW+ proposals won"**, quoted verbatim from
+   the CV — *"authored winning proposals and tender documents for over 1,500 MW
+   of solar projects"*. It is precise and defensible in a meeting, which the old
+   "20 GW+ capacity engaged" was not. `site.stats.capacityGW` is still in config
+   if the aggregate is wanted back, but it needs an explicit qualifier to be
+   honest, because it counts every project touched at any stage rather than
+   capacity built and energised.
 2. **Project stages.** Each row in `src/content/local/projects.ts` carries a
    `stage`. Anything marked `Approved` or `Operational` that is really at
    feasibility is the fastest way to lose a serious counterparty.

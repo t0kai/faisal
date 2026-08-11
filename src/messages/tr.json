@@ -55,18 +55,14 @@
       "eyebrow": "01 — Şebeke ölçekli enerji geliştirme",
       "title": "Gerçekten <em>finansal kapanışa ulaşan projeler.</em>",
       "lede": "13+ yıldır Bangladeş’te şebeke ölçekli güneş, depolama, LNG ve doğalgaz projeleri geliştiriyorum — fizibilite ve araziden PPA müzakeresi, izinler ve kapanışa kadar. Sermaye ve teknoloji kolay kısmı; sahayı ben yürütüyorum.",
-      "ctaPrimary": "Proje kaydını görüntüle",
-      "ctaSecondary": "CV indir",
+      "ctaPrimary": "Danışmanlık görüşmesi ayarla",
+      "ctaSecondary": "Proje kaydını görüntüle",
       "availability": "Yeni proje görevlerine açık — Dakka, GMT+6"
     },
     "stats": {
       "years": {
         "label": "Deneyim",
         "note": "2013’ten bu yana kesintisiz"
-      },
-      "capacity": {
-        "label": "Çalışılan kapasite",
-        "note": "Geliştirme döngüsü boyunca"
       },
       "projects": {
         "label": "Projeler",
@@ -75,14 +71,18 @@
       "partners": {
         "label": "Karşı taraflar",
         "note": "Japonya · Çin · Kore · Körfez · ABD"
+      },
+      "proposals": {
+        "label": "Kazanan teklifler",
+        "note": "Hazırladığı güneş ihale dosyaları"
       }
     },
     "sections": {
       "capability": "02 / Yetkinlik",
       "register": "03 / Kayıt",
-      "coverage": "05 / Kapsam",
       "insights": "06 / İçgörüler",
-      "partners": "04 / Karşı taraflar"
+      "partners": "04 / Karşı taraflar",
+      "portfolio": "05 / Portföy"
     }
   },
   "capabilities": {
@@ -136,7 +136,6 @@
     }
   },
   "tech": {
-    "title": "Konvansiyonel ve yenilenebilir — <em>üretim yelpazesinin tamamı.</em>",
     "Solar PV": "Güneş PV",
     "BESS": "BESS",
     "LNG & FSRU": "LNG ve FSRU",
@@ -175,7 +174,11 @@
       "rangunia": "Proje Müdürü ve Yerel Temsilci",
       "xsergy": "Müdür, Operasyonlar",
       "reliance": "Müdür Yardımcısı, LNG ve FSRU",
-      "om": "Elektrik Mühendisi"
+      "om": "Elektrik Mühendisi",
+      "metito": "Bağımsız Danışman",
+      "symbior": "Yenilenebilir Enerji Danışmanı",
+      "eclectic": "Yönetici Danışman",
+      "aloron": "Genel Müdür"
     },
     "education": {
       "title": "Eğitim",
@@ -184,16 +187,19 @@
     "languages": {
       "title": "Diller",
       "items": "Bengalce — ana dil|İngilizce — tam profesyonel yeterlilik"
-    }
+    },
+    "introBody": "On üç yılda on kurum — işveren mühendisliği çalışmalarında doküman kontrolünden yenilenebilir enerji geliştirmeyi yönetmeye. Değişmeyen tek şey şu: bir projeyi, burada projelerin genellikle tıkandığı noktanın ötesine taşımak."
   },
   "services": {
     "title": "Dört <em>çalışma biçimi.</em>",
-    "lede": "Her görev tanımlı bir çıktıyla kapsamlandırılır; sabit ücret veya danışmanlık bedeliyle. Ucu açık danışmanlık yok."
+    "lede": "Her görev tanımlı bir çıktıyla kapsamlandırılır; sabit ücret veya danışmanlık bedeliyle. Ucu açık danışmanlık yok.",
+    "photoAlt": "Abdullah Bin Hossain bir proje toplantısında, Dakka"
   },
   "projects": {
     "title": "<em>Proje kaydı.</em>",
     "lede": "Güneş, depolama, LNG, gaz, kömür ve iletimde otuzdan fazla proje — her biri gerçekte ulaştığı aşamayla.",
-    "disclaimer": "Aşamalar, her projenin benim katılımım sırasında ulaştığı noktayı yansıtır; bugünkü durumunu değil. Gizlilik sözleşmesi veya devam eden müzakere bulunan bazı yatırımcılar gizli olarak gösterilmiştir."
+    "disclaimer": "Aşamalar, her projenin benim katılımım sırasında ulaştığı noktayı yansıtır; bugünkü durumunu değil. Gizlilik sözleşmesi veya devam eden müzakere bulunan bazı yatırımcılar gizli olarak gösterilmiştir.",
+    "photoAlt": "Abdullah Bin Hossain proje dokümantasyonunu incelerken, Dakka"
   },
   "project": {
     "technology": "Teknoloji",
@@ -233,13 +239,14 @@
       "errorGeneric": "Bir sorun oluştu. Lütfen doğrudan e-posta gönderin.",
       "errorRateLimited": "Çok fazla mesaj gönderildi. Lütfen daha sonra deneyin.",
       "privacy": "Bilgileriniz yalnızca bu talebi yanıtlamak için kullanılır."
-    }
+    },
+    "hoursLabel": "Danışmanlık saatleri"
   },
   "cta": {
-    "eyebrow": "06 / İletişim",
+    "eyebrow": "07 / İletişim",
     "title": "Bana teknolojiyi, kapasiteyi ve <em>nerede takıldığınızı söyleyin.</em>",
     "body": "Buradan itibaren yolun gerçekte nasıl göründüğünü dürüstçe söylerim — cevabın “olmaz” olduğu durumlar dahil.",
-    "primary": "Görüşmeye başlayın",
+    "primary": "Danışmanlık görüşmesi ayarla",
     "secondary": "WhatsApp"
   },
   "footer": {
@@ -252,5 +259,17 @@
     "title": "Bu sayfa mevcut değil.",
     "body": "Bağlantı güncel olmayabilir. Proje kaydı ve içgörüler bir tık uzağınızda.",
     "cta": "Ana sayfaya dön"
+  },
+  "portfolio": {
+    "title": "Portföyün <em>gerçekte neyden oluştuğu.</em>",
+    "lede": "Bu sitedeki proje kaydından sayıldı, etki için yuvarlanmadı. Kapasite, her teknolojide çalışılan projelerin toplamıdır.",
+    "col": {
+      "technology": "Teknoloji",
+      "projects": "Projeler",
+      "capacity": "Kapasite"
+    },
+    "projectCount": "{count, plural, =0 {yok} =1 {1 proje} other {# proje}}",
+    "notMeasuredInMW": "megavat ile ölçülmez",
+    "footnote": "İki teknoloji kullanan bir proje her iki satırda da sayılır; bu nedenle satırlar bir portföy toplamı vermez. İletim işleri megavat değil kilovolt üzerinden ihale edilir."
   }
 }

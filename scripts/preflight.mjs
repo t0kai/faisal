@@ -85,9 +85,14 @@ else {
 }
 
 console.log('\n\x1b[1mAssets\x1b[0m')
-for (const f of ['public/portrait.jpg', 'public/abdullah-faisal-cv.pdf', 'src/middleware.ts']) {
+/* Photo paths are declared in src/config/site.ts — read them from there so
+   this check can never drift from what the pages actually request. */
+const cfg = readFileSync(new URL('../src/config/site.ts', import.meta.url), 'utf8')
+const photos = [...cfg.matchAll(/src:\s*'(\/photos\/[^']+)'/g)].map(m => m[1])
+for (const f of ['src/middleware.ts', ...photos.map(p => 'public' + p)]) {
   existsSync(new URL('../' + f, import.meta.url)) ? ok(f) : bad(`${f} is missing`)
 }
+if (!photos.length) warn('no photos found in site.config — check the photos map')
 
 console.log(
   problems.length

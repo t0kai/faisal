@@ -5,12 +5,18 @@ import { Reveal } from '@/components/primitives/Reveal'
 /**
  * The statistics strip. Values come from site.config so they are confirmed in
  * one place; labels and notes come from the message files so they translate.
+ *
+ * Slot 2 is deliberately the 1,500 MW proposals figure rather than the 20 GW+
+ * aggregate. It is quoted verbatim from the CV — "authored winning proposals
+ * and tender documents for over 1,500 MW of solar projects" — so it is precise
+ * and defensible in a meeting. `site.stats.capacityGW` is still in config if
+ * the aggregate is wanted back, but it needs a qualifier to be honest.
  */
 const FIGURES = [
-  { key: 'years', value: () => site.stats.years, unit: 'YRS' },
-  { key: 'capacity', value: () => site.stats.capacityGW, unit: 'GW+' },
-  { key: 'projects', value: () => site.stats.projects, unit: '+' },
-  { key: 'partners', value: () => site.stats.partners, unit: '+' },
+  { key: 'years', value: () => String(site.stats.years), unit: 'YRS' },
+  { key: 'proposals', value: () => site.stats.proposalsMW.toLocaleString('en-US'), unit: 'MW+' },
+  { key: 'projects', value: () => String(site.stats.projects), unit: '+' },
+  { key: 'partners', value: () => String(site.stats.partners), unit: '+' },
 ] as const
 
 export async function Figures({ locale }: { locale: Locale }) {

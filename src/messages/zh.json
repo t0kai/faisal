@@ -55,18 +55,14 @@
       "eyebrow": "01 — 公用事业级电力开发",
       "title": "真正能走到<em>融资关闭的电力项目。</em>",
       "lede": "13年以上经验，在孟加拉国开发公用事业级太阳能、储能、LNG 与燃气项目——从可行性研究和土地，到购电协议谈判、审批许可与融资关闭。资金和技术是容易的部分，落地执行由我负责。",
-      "ctaPrimary": "查看项目清单",
-      "ctaSecondary": "下载简历",
+      "ctaPrimary": "预约咨询",
+      "ctaSecondary": "查看项目清单",
       "availability": "可承接新项目委托 — 达卡，GMT+6"
     },
     "stats": {
       "years": {
         "label": "从业年限",
         "note": "自2013年持续从业"
-      },
-      "capacity": {
-        "label": "已参与装机容量",
-        "note": "覆盖完整开发生命周期"
       },
       "projects": {
         "label": "项目数量",
@@ -75,14 +71,18 @@
       "partners": {
         "label": "合作方",
         "note": "日本 · 中国 · 韩国 · 海湾 · 美国"
+      },
+      "proposals": {
+        "label": "中标提案",
+        "note": "所撰写的太阳能投标文件"
       }
     },
     "sections": {
       "capability": "02 / 能力",
       "register": "03 / 项目清单",
-      "coverage": "05 / 技术覆盖",
       "insights": "06 / 洞察",
-      "partners": "04 / 合作方"
+      "partners": "04 / 合作方",
+      "portfolio": "05 / 项目构成"
     }
   },
   "capabilities": {
@@ -136,7 +136,6 @@
     }
   },
   "tech": {
-    "title": "常规与可再生——<em>覆盖完整发电技术谱系。</em>",
     "Solar PV": "太阳能",
     "BESS": "储能",
     "LNG & FSRU": "LNG 与 FSRU",
@@ -175,7 +174,11 @@
       "rangunia": "项目经理兼本地代表",
       "xsergy": "运营经理",
       "reliance": "LNG 与 FSRU 助理经理",
-      "om": "电气工程师"
+      "om": "电气工程师",
+      "metito": "独立顾问",
+      "symbior": "可再生能源顾问",
+      "eclectic": "执行顾问",
+      "aloron": "首席执行官"
     },
     "education": {
       "title": "教育背景",
@@ -184,16 +187,19 @@
     "languages": {
       "title": "语言能力",
       "items": "孟加拉语 — 母语|英语 — 专业工作水平"
-    }
+    },
+    "introBody": "十三年，十家机构——从业主工程研究的文件管理，到主管可再生能源开发。主线始终未变：让项目越过在这里通常会卡住的那一关。"
   },
   "services": {
     "title": "四种<em>合作方式。</em>",
-    "lede": "每项合作均以明确交付成果界定范围，采用固定费用或聘用制。不做开放式咨询。"
+    "lede": "每项合作均以明确交付成果界定范围，采用固定费用或聘用制。不做开放式咨询。",
+    "photoAlt": "Abdullah Bin Hossain 在达卡的项目会议中"
   },
   "projects": {
     "title": "<em>项目清单。</em>",
     "lede": "30 多个项目，涵盖太阳能、储能、LNG、燃气、煤电与输电——每个都标注真实达到的阶段。",
-    "disclaimer": "所列阶段为本人参与期间各项目达到的节点，不代表其当前状态。部分投资方因保密协议或谈判进行中而以\"保密\"标注。"
+    "disclaimer": "所列阶段为本人参与期间各项目达到的节点，不代表其当前状态。部分投资方因保密协议或谈判进行中而以\"保密\"标注。",
+    "photoAlt": "Abdullah Bin Hossain 在达卡审阅项目文件"
   },
   "project": {
     "technology": "技术路线",
@@ -233,13 +239,14 @@
       "errorGeneric": "发送失败，请直接发送邮件给我。",
       "errorRateLimited": "发送次数过多，请稍后再试。",
       "privacy": "您提供的信息仅用于回复本次咨询。"
-    }
+    },
+    "hoursLabel": "咨询时间"
   },
   "cta": {
-    "eyebrow": "06 / 联系",
+    "eyebrow": "07 / 联系",
     "title": "告诉我技术路线、装机容量，以及<em>你卡在哪里。</em>",
     "body": "我会坦诚说明从这里出发的实际路径——包括当答案是\"行不通\"的时候。",
-    "primary": "开始沟通",
+    "primary": "预约咨询",
     "secondary": "WhatsApp"
   },
   "footer": {
@@ -252,5 +259,17 @@
     "title": "页面不存在。",
     "body": "链接可能已失效。项目清单与洞察文章都只需一次点击。",
     "cta": "返回首页"
+  },
+  "portfolio": {
+    "title": "项目组合的<em>真实构成。</em>",
+    "lede": "数据取自本站项目清单，未作任何夸大。装机容量为各技术领域所参与项目的合计。",
+    "col": {
+      "technology": "技术领域",
+      "projects": "项目",
+      "capacity": "装机容量"
+    },
+    "projectCount": "{count, plural, =0 {暂无} other {# 个项目}}",
+    "notMeasuredInMW": "不以兆瓦计量",
+    "footnote": "涉及两种技术的项目在两行中均计入，因此各行不构成组合总量。输电项目以千伏而非兆瓦招标。"
   }
 }

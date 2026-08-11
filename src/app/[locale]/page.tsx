@@ -10,7 +10,7 @@ import { SectionHead } from '@/components/sections/SectionHead'
 import { Plates } from '@/components/sections/Plates'
 import { Register } from '@/components/sections/Register'
 import { PartnerGrid } from '@/components/sections/PartnerGrid'
-import { TechGrid } from '@/components/sections/TechGrid'
+import { Portfolio } from '@/components/sections/Portfolio'
 import { PostList } from '@/components/sections/PostList'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { Reveal } from '@/components/primitives/Reveal'
@@ -85,10 +85,11 @@ export default async function HomePage({ params }: Props) {
       <section className="section-tight">
         <div className="shell">
           <SectionHead
-            eyebrow={t('home.sections.coverage')}
-            title={t.rich('tech.title', { em: c => <em>{c}</em> })}
+            eyebrow={t('home.sections.portfolio')}
+            title={t.rich('portfolio.title', { em: c => <em>{c}</em> })}
+            lede={t('portfolio.lede')}
           />
-          <TechGrid locale={locale} projects={projects} />
+          <Portfolio locale={locale} projects={projects} />
         </div>
       </section>
 

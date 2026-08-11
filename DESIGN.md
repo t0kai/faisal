@@ -158,6 +158,36 @@ Verified with a real browser at 360 / 375 / 390 / 430 / 768 / 1024 / 1440 /
 
 ---
 
+## Photography
+
+Five photographs, one per page, framed in the same bordered plate as the tables.
+Restraint is the rule — this language leans on typography and rules, so an image
+in every section would fight it.
+
+| File | Used on | Source size | Notes |
+|---|---|---|---|
+| `photos/portrait.jpg` | Home hero | 762 × 1017 | Exactly 3:4 — the reason it is the hero |
+| `photos/standing.jpg` | About | 546 × 787 | Beside the career intro |
+| `photos/boardroom.jpg` | Services | 1111 × 596 | Full-width band |
+| `photos/desk-wide.jpg` | Projects | 763 × 399 | Inside the shell, not full-bleed |
+| `photos/window.jpg` | Contact | 760 × 610 | Beside the direct-contact rows |
+| `photos/desk-portrait.jpg` | — | 558 × 789 | Unused alternate |
+
+Paths and intrinsic dimensions live together in `site.photos`, so `next/image`
+never guesses and no page can shift on load. `npm run preflight` reads that map
+and checks each file exists.
+
+**Two constraints worth knowing before swapping images:**
+
+1. **Never display a photo wider than its source.** The full-width band caps at
+   `300px` tall for this reason: at 1440px wide a 21:9 strip would be 617px tall
+   and stretch the 1111px source past 1.3×. The Projects photo sits inside the
+   shell rather than full-bleed because its source is only 763px wide.
+2. **Crop position is computed, not guessed.** `object-position: center 25%` on a
+   band places the subject's face in frame — `center center` cut his head off.
+
+---
+
 ## How to change things
 
 | I want to… | Edit |
@@ -171,6 +201,7 @@ Verified with a real browser at 360 / 375 / 390 / 430 / 768 / 1024 / 1440 /
 | Add a career role | `sections/Timeline.tsx` → `CAREER` + `about.roles.<key>` |
 | Add a technology | `content/types.ts` → `TECHNOLOGIES`, an icon in `TECH_ICON`, a `tech.<name>` message |
 | Add a nav item | `config/site.ts` → `NAV` + `NAV_PATH`, a `nav.<key>` message, a page folder |
+| Swap a photo | drop the file in `public/photos/`, update `site.photos` (path **and** dimensions) |
 | Rename the site | `config/site.ts` |
 
 Two rules keep it clean:

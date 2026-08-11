@@ -10,6 +10,32 @@ export const STAGES = [
 ] as const
 export type Stage = (typeof STAGES)[number]
 
+/* ── Runtime guards ──────────────────────────────────────────────────────
+   Content from Notion is typed by convention, not by the compiler. A select
+   option spelled "Solar" instead of "Solar PV" would reach a translation
+   lookup that has no such key, and next-intl throws on a missing key — one
+   typo in Notion would break the whole page. These guards keep bad values
+   out of the app, and the Notion mapper logs what it dropped.             */
+
+export const isTechnology = (v: unknown): v is Technology =>
+  typeof v === 'string' && (TECHNOLOGIES as readonly string[]).includes(v)
+
+export const isStage = (v: unknown): v is Stage =>
+  typeof v === 'string' && (STAGES as readonly string[]).includes(v)
+
+/** Case- and space-insensitive match, so "solar pv" and "Solar PV" both land. */
+function loose<T extends string>(list: readonly T[], value: string): T | undefined {
+  const norm = (s: string) => s.toLowerCase().replace(/[\s_-]+/g, ' ').trim()
+  const target = norm(value)
+  return list.find(x => norm(x) === target)
+}
+
+export const coerceTechnology = (v: string): Technology | undefined =>
+  isTechnology(v) ? v : loose(TECHNOLOGIES, v)
+
+export const coerceStage = (v: string, fallback: Stage = 'Development'): Stage =>
+  isStage(v) ? v : (loose(STAGES, v) ?? fallback)
+
 export type Project = {
   slug: string
   title: string

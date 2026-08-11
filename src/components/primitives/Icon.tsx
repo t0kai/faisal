@@ -30,6 +30,8 @@ export const ICONS = {
   clock: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 7v5.2l3.2 2',
   person: 'M12 12.3a3.9 3.9 0 1 0 0-7.8 3.9 3.9 0 0 0 0 7.8ZM4.4 20.2c0-4 3.4-6.4 7.6-6.4s7.6 2.4 7.6 6.4',
   check: 'M4.5 12.5 9.5 17.5 19.5 7',
+  register: 'M4 5.5h16M4 12h16M4 18.5h16M7.5 3v19',
+  clock2: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM8.5 12.5l2.4 2.4 4.6-5',
 } as const
 
 export type IconName = keyof typeof ICONS

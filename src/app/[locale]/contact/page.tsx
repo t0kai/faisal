@@ -9,6 +9,7 @@ import { ContactForm } from '@/components/sections/ContactForm'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Icon, SocialIcon, type IconName } from '@/components/primitives/Icon'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { Figure } from '@/components/primitives/Figure'
 
 export const revalidate = 3600
 type Props = { params: Promise<{ locale: Locale }> }
@@ -27,9 +28,10 @@ export default async function ContactPage({ params }: Props) {
 
   const rows: Array<{ icon: IconName; label: string; value: string; href?: string }> = [
     { icon: 'mail', label: t('emailLabel'), value: site.email, href: `mailto:${site.email}` },
-    { icon: 'phone', label: t('phoneLabel'), value: site.phoneDisplay, href: `https://wa.me/${site.whatsapp}` },
+    { icon: 'phone', label: t('phoneLabel'), value: site.whatsappDisplay, href: `https://wa.me/${site.whatsapp}` },
     { icon: 'pin', label: t('locationLabel'), value: t('locationValue') },
-    { icon: 'clock', label: t('responseLabel'), value: t('responseValue') },
+    { icon: 'clock', label: t('hoursLabel'), value: site.consultationHours },
+    { icon: 'clock2', label: t('responseLabel'), value: t('responseValue') },
   ]
 
   return (
@@ -37,7 +39,14 @@ export default async function ContactPage({ params }: Props) {
       <PageTop title={t.rich('title', { em: c => <em>{c}</em> })} lede={t('lede')} />
       <section className="section">
         <div className="shell grid items-start gap-[clamp(28px,5vw,72px)] max-[960px]:grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]">
-          <Reveal>
+          <div>
+            <Figure
+              photo={site.photos.contact}
+              alt={`${site.name} — ${site.jobTitle}`}
+              caption={[site.location.city, site.location.timezone]}
+              className="mb-8"
+              sizes="(max-width: 960px) 92vw, 420px"
+            />
             {rows.map(r => {
               const body = (
                 <>
@@ -60,7 +69,7 @@ export default async function ContactPage({ params }: Props) {
                 </a>
               ))}
             </div>
-          </Reveal>
+          </div>
 
           <Reveal delay={80}><ContactForm /></Reveal>
         </div>

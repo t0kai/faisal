@@ -4,12 +4,15 @@ import type { Locale } from '@/config/site'
 import { buildMetadata } from '@/lib/seo'
 import { breadcrumbSchema } from '@/lib/jsonld'
 import { PageTop, SectionHead } from '@/components/sections/SectionHead'
+import { Rail } from '@/components/primitives/Rail'
 import { Timeline } from '@/components/sections/Timeline'
 import { Figures } from '@/components/sections/Figures'
 import { CtaBand } from '@/components/sections/CtaBand'
 import { Reveal } from '@/components/primitives/Reveal'
 import { Icon, type IconName } from '@/components/primitives/Icon'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { Figure } from '@/components/primitives/Figure'
+import { site } from '@/config/site'
 
 export const revalidate = 3600
 type Props = { params: Promise<{ locale: Locale }> }
@@ -37,7 +40,20 @@ export default async function AboutPage({ params }: Props) {
 
       <section className="section">
         <div className="shell">
-          <SectionHead eyebrow={t('about.sections.career')} title={t('about.careerTitle')} />
+          <div className="intro-split mb-[clamp(40px,6vw,72px)]">
+            <div>
+              <Rail>{t('about.sections.career')}</Rail>
+              <h2 className="t-title mt-5">{t('about.careerTitle')}</h2>
+              <p className="t-lede mt-5">{t('about.introBody')}</p>
+            </div>
+            <Figure
+              photo={site.photos.about}
+              alt={`${site.name} — ${site.jobTitle}`}
+              caption={[site.location.city, 'Bangladesh']}
+              sizes="(max-width: 960px) 80vw, 420px"
+              delay={80}
+            />
+          </div>
           <Timeline locale={locale} />
         </div>
       </section>

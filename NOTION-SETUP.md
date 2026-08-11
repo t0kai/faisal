@@ -32,6 +32,15 @@ You now query a **data source**, not a database. This guide uses:
 
 ## Step 2 — Build the two databases
 
+Run this first — it prints the exact schema this codebase reads, generated from
+the code itself so it can never be out of date:
+
+```bash
+npm run notion:schema
+```
+
+Create the databases to match it. The tables below are the same thing in prose.
+
 In Notion, create a page called `Website` and add two **full-page databases**.
 
 ### Database A — `Insights`
@@ -59,6 +68,14 @@ In Notion, create a page called `Website` and add two **full-page databases**.
 | `Capacity MW` | Number | `1000` for 1 GW — store the number, format it in code |
 | `Technology` | Multi-select | Solar PV, BESS, LNG & FSRU, Gas / CCPP, Coal, Transmission, Waste-to-Energy |
 | `Stage` | Select | Feasibility, Bidding, Development, Approved, Construction, Operational |
+| `Summary` | Text | one sentence; falls back to the first 180 chars of the page body |
+
+> **Spell the select options exactly.** They are matched against the lists in
+> `src/content/types.ts`. Case and spacing are forgiven — `solar pv` and
+> `Solar_PV` both resolve to `Solar PV` — but a genuinely different name
+> (`Solar`) is **dropped with a warning in the build log** rather than breaking
+> the page. An unrecognised `Stage` falls back to `Development`, also with a
+> warning. Check the build log after your first Notion deploy.
 | `Client` | Text | |
 | `Confidential` | Checkbox | if ticked, the site hides the client name |
 | `Location` | Text | |
