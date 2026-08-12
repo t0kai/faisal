@@ -31,17 +31,17 @@ export default async function OgImage({ params }: { params: Promise<{ locale: Lo
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ width: 30, height: 30, border: `1px solid ${og.accent}` }} />
-          <div style={{ color: og.ink3, fontSize: 21, letterSpacing: 3, fontFamily: 'monospace' }}>
-            {site.location.city.toUpperCase()} · {site.region}
+          <div style={{ display: 'flex', color: og.ink3, fontSize: 21, letterSpacing: 3, fontFamily: 'monospace' }}>
+            {`${site.location.city.toUpperCase()} · ${site.region}`}
           </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <div style={{ color: og.ink, fontSize: 66, lineHeight: 1.06, letterSpacing: -2, maxWidth: 920 }}>
+          <div style={{ display: 'flex', color: og.ink, fontSize: 66, lineHeight: 1.06, letterSpacing: -2, maxWidth: 920 }}>
             {t('headline')}
           </div>
-          <div style={{ color: og.ink2, fontSize: 27, fontFamily: 'sans-serif' }}>
-            {site.name} — {t('role')}
+          <div style={{ display: 'flex', color: og.ink2, fontSize: 27, fontFamily: 'sans-serif' }}>
+            {`${site.name} — ${t('role')}`}
           </div>
         </div>
 
@@ -49,9 +49,9 @@ export default async function OgImage({ params }: { params: Promise<{ locale: Lo
           display: 'flex', gap: 44, color: og.ink2, fontSize: 22,
           borderTop: `1px solid ${og.line}`, paddingTop: 26, fontFamily: 'sans-serif',
         }}>
-          <span>{site.stats.years}+ {t('years')}</span>
-          <span>{site.stats.capacityGW} GW+</span>
-          <span>{site.stats.projects}+ {t('projects')}</span>
+          <span>{`${site.stats.years}+ ${t('years')}`}</span>
+          <span>{`${site.stats.capacityGW} GW+`}</span>
+          <span>{`${site.stats.projects}+ ${t('projects')}`}</span>
         </div>
       </div>
     ),
