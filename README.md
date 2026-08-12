@@ -5,7 +5,7 @@ Design system: **Meridian** — see [DESIGN.md](./DESIGN.md)
 
 Six locales (en · zh · ar · tr · de · fr) with full RTL for Arabic.
 Content runs from typed local files today and switches to Notion with one
-environment variable — no code change.
+environment variable — no code change. See [NOTION-SETUP.md](./NOTION-SETUP.md).
 
 ---
 
@@ -27,7 +27,7 @@ npm run dev                    # http://localhost:3000
    `NEXT_PUBLIC_SITE_URL` is required for a successful first build.
 4. Deploy. Add the custom domain under **Settings → Domains** when you have one.
 
-The build produces **126 pre-rendered pages** and about **103 kB** of shared
+The build produces **187 pre-rendered pages** and about **103 kB** of shared
 JavaScript.
 
 ---
@@ -38,7 +38,7 @@ JavaScript.
 
 | # | Item | Where it goes |
 |---|---|---|
-| 1 | **Higher-resolution portrait**, 2000 px+ | replace `public/portrait.jpg`. The current image was extracted from the CV at 174×248 and upscaled — it is capped at 320px on screen so it stays sharp, but a real photo would let the frame go larger. |
+| 1 | **Higher-resolution portrait**, 2000 px+ | replace `public/photos/portrait.jpg`. The current file is 762×1017, extracted from the CV and upscaled. It is capped on screen so it stays sharp, but a real photo would let the frame go larger. |
 | 2 | **Confirm the headline figures** — see *Claims to confirm* below | `src/config/site.ts` → `stats` |
 | 3 | **Which clients may be named publicly** (NDAs) | `src/config/partners.ts`, `src/content/local/projects.ts` |
 | 4 | **Verify every project `stage`** against reality | `src/content/local/projects.ts` |
@@ -48,12 +48,13 @@ JavaScript.
 | Item | Where |
 |---|---|
 | Domain name | Vercel → Domains, and `NEXT_PUBLIC_SITE_URL` |
-| Decide whether to publish a downloadable CV | removed at your request; `Button icon="download"` in `Hero.tsx` would bring it back |
 | Resend API key + verified sending domain | `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` |
 | Real article copy | `src/content/local/insights.ts` |
 | Project case-study bodies (`body` field) | `src/content/local/projects.ts` |
+| A wider boardroom photo | `public/photos/boardroom.jpg` is 1111px wide and the services band stretches past that on a large monitor |
 | Site and project photographs | `public/covers/`, then `cover:` on each project |
 | Native review of the Chinese and Arabic copy | `src/messages/zh.json`, `ar.json` |
+| Decide whether to publish a downloadable CV | removed at your request; `Button icon="download"` in `Hero.tsx` would bring it back |
 
 ---
 
@@ -62,21 +63,27 @@ JavaScript.
 The site's credibility rests on these being exact. A foreign sponsor or lender
 **will** probe them.
 
-1. **The headline stat is now "1,500 MW+ proposals won"**, quoted verbatim from
+1. **The headline stat is "1,500 MW+ proposals won"**, quoted verbatim from
    the CV — *"authored winning proposals and tender documents for over 1,500 MW
    of solar projects"*. It is precise and defensible in a meeting, which the old
-   "20 GW+ capacity engaged" was not. `site.stats.capacityGW` is still in config
-   if the aggregate is wanted back, but it needs an explicit qualifier to be
-   honest, because it counts every project touched at any stage rather than
-   capacity built and energised.
-2. **Project stages.** Each row in `src/content/local/projects.ts` carries a
+   "20 GW+ capacity engaged" was not.
+2. **The Open Graph image still shows "20 GW+".**
+   `src/app/[locale]/opengraph-image.tsx` reads `site.stats.capacityGW`, so the
+   retired aggregate is still what appears in every LinkedIn and WhatsApp share
+   preview — the first number a counterparty sees. Either qualify it or swap it
+   for `proposalsMW`.
+3. **Project stages.** Each row in `src/content/local/projects.ts` carries a
    `stage`. Anything marked `Approved` or `Operational` that is really at
    feasibility is the fastest way to lose a serious counterparty.
-3. **Named counterparties.** `src/config/partners.ts` lists Sumitomo, Reliance,
-   Power China and others as a plain text ticker — deliberately not a logo wall,
-   which would imply endorsement. Remove anything under NDA.
-4. **`confidential: true`** on a project hides the client name automatically and
+4. **Named counterparties.** `src/config/partners.ts` lists Sumitomo, Reliance,
+   Power China and others as plain text, deliberately not a logo wall, which
+   would imply endorsement. Remove anything under NDA.
+5. **`confidential: true`** on a project hides the client name automatically and
    renders "Confidential sponsor" instead. Use it liberally.
+6. **The portfolio table counts a project under every technology it uses.** A
+   "1,000 MW solar + 20% BESS" project contributes its full capacity to both the
+   Solar PV row and the BESS row, so the BESS figure is not storage capacity.
+   The footnote says the rows do not sum to a total; it does not say this.
 
 ---
 
@@ -91,12 +98,13 @@ src/
 │  ├─ partners.ts        counterparty list
 │  └─ theme.ts           the few token values non-CSS code needs (OG image)
 ├─ i18n/                 next-intl routing, navigation, request config
-├─ messages/             en · zh · ar · tr · de · fr  (167 keys each, verified in parity)
+├─ messages/             en · zh · ar · tr · de · fr  (183 keys each, verified in parity)
 ├─ lib/
 │  ├─ seo.ts             buildMetadata() + hreflang alternates — every page uses it
 │  ├─ jsonld.ts          Person, ProfessionalService, BlogPosting, BreadcrumbList
 │  ├─ format.ts          capacity labels, locale dates, reading time
 │  ├─ rate-limit.ts      contact-form throttle
+│  ├─ social.ts          social links, filtered to what actually exists
 │  └─ cn.ts
 ├─ content/
 │  ├─ types.ts           Project, Insight, ContentSource interface
@@ -104,10 +112,11 @@ src/
 │  ├─ local/             typed data files — the default backend
 │  └─ notion/            Notion adapter: client, props, block renderer
 ├─ components/
-│  ├─ primitives/        Icon, Button, Reveal, Rail
+│  ├─ primitives/        Icon, Button, Reveal, Rail, Figure
 │  ├─ layout/            Header, Footer, MobileDrawer, LanguageSwitcher, ThemeToggle, ThemeScript
-│  ├─ sections/          Hero, Figures, Plates, Register, PartnerGrid, TechGrid, PostList, Timeline, CtaBand, ContactForm, SectionHead
-│  └─ seo/               JsonLd
+│  ├─ sections/          Hero, Figures, Plates, Register, PartnerGrid, Portfolio, PostList, Timeline, CtaBand, ContactForm, SectionHead
+│  ├─ seo/               JsonLd
+│  └─ ui/                ⚠ unused — an older copy of Button, Icon and Reveal. Nothing imports it.
 └─ app/
    ├─ [locale]/          layout · home · about · services · projects[/slug] · insights[/slug] · contact · 404 · opengraph-image
    ├─ api/contact/       Resend + honeypot + rate limit
@@ -136,8 +145,8 @@ pairs across both themes. Run it after any colour change.
 - **SEO is centralised.** No page writes its own `<meta>`. Every one calls
   `buildMetadata()`, so canonical URLs, hreflang, Open Graph and Twitter cards
   can never drift apart.
-- **Server Components by default.** Only five files are `'use client'` —
-  Header, MobileDrawer, LanguageSwitcher, ThemeToggle, ContactForm and Reveal.
+- **Server Components by default.** Six files are `'use client'` — Header,
+  MobileDrawer, LanguageSwitcher, ThemeToggle, ContactForm and Reveal.
   Everything else ships zero JavaScript.
 - **No icon library, no `clsx`, no `notion-to-md`.** Each is replaced by a small
   file we own. Fewer dependencies to break on upgrade.
@@ -148,7 +157,7 @@ pairs across both themes. Run it after any colour change.
 
 | Decision | Effect |
 |---|---|
-| Static generation for all 126 pages | HTML served from the CDN edge |
+| Static generation for all 187 pages | HTML served from the CDN edge |
 | Server Components everywhere except 6 files | ~103 kB shared JS |
 | `next/font` self-hosting | zero layout shift, no render-blocking request |
 | Inline SVG icons | no icon-library bundle |
@@ -182,7 +191,8 @@ Bing Webmaster Tools, and set the six locales as alternate versions.
 
 ## Switching to Notion
 
-The Notion adapter is written and type-checked. When Faisal's workspace is ready:
+The Notion adapter is written, type-checked and tested. When Faisal's workspace
+is ready:
 
 ```bash
 CONTENT_SOURCE=notion
@@ -192,26 +202,54 @@ NOTION_PROJECTS_DS=...
 ```
 
 ```bash
-npm run notion:ids     # prints the data source IDs the integration can see
+npm run notion:schema   # prints the exact database schema to build
+npm run notion:ids      # prints the data source IDs the integration can see
 ```
 
-See `NOTION-SETUP.md` for the database schemas and the connection steps.
-Note that this uses `dataSources.query` on API version `2026-03-11` —
-`databases.query` no longer exists, so older tutorials will not work.
+[NOTION-SETUP.md](./NOTION-SETUP.md) is the full walkthrough. Three things worth
+knowing before you start:
+
+- **Content is authored once, in English.** Rows carry `Language = en`. A visitor
+  on a locale with no translated row falls back to the English row, so nothing
+  404s. Add a translated row with the same slug later and it takes precedence
+  automatically — no code change, no redeploy.
+- **`Summary` and `Reading Minutes` must be filled in.** Listing pages do not
+  download each row's page body — that would be one API call per row per
+  rebuild — so they cannot derive either value.
+- **Never upload images into Notion.** Those file URLs expire after about an
+  hour and the page silently breaks the next day. Use the `Cover URL` property
+  with a permanent link.
+
+This uses `dataSources.query` on API version `2026-03-11` — `databases.query`
+no longer exists, so older tutorials will not work.
 
 If `CONTENT_SOURCE=notion` but the token is missing, the site logs a warning and
 falls back to local content rather than failing the build.
 
 ---
 
+## Known issues
+
+- **Arabic and Chinese share previews render as empty boxes.** `ImageResponse`
+  falls back to a Latin-only font, so `/ar/opengraph-image` and
+  `/zh/opengraph-image` have no glyph coverage. Fixing it means adding Arabic and
+  SC font files to `public/fonts/` and passing them to `ImageResponse`.
+- **`src/components/ui/` is dead code** — an older copy of Button, Icon and
+  Reveal that nothing imports.
+- **`tokens.css` says the palette was validated with 24 checks.** It is 30.
+
+---
+
 ## Commands
 
 ```bash
-npm run dev         # dev server
-npm run build       # production build
-npm run typecheck   # tsc --noEmit
-npm run contrast    # validate the palette — 30 WCAG checks, both themes
-npm run notion:ids  # list Notion data source IDs
+npm run dev           # dev server
+npm run build         # production build (runs preflight first)
+npm run typecheck     # tsc --noEmit
+npm run contrast      # validate the palette — 30 WCAG checks, both themes
+npm run preflight     # env, translation parity and asset check
+npm run notion:schema # print the Notion database schema
+npm run notion:ids    # list Notion data source IDs
 ```
 
 ## Verified
@@ -220,7 +258,11 @@ npm run notion:ids  # list Notion data source IDs
 |---|---|
 | `npm run typecheck` | 0 errors |
 | `npm run contrast` | 30/30 pass, both themes |
-| `npm run build` | 126 static pages · 103 kB shared JS · middleware registered |
+| `npm run preflight` | translation parity, 183/183 keys across all six locales |
+| `npm run build` | 187 static pages · 103 kB shared JS · middleware registered |
 | All 6 locales | 200 OK · Arabic renders `dir="rtl"` |
 | `/`, `/about`, `/projects` with no locale | 307 → `/en/...` |
+| `/[locale]/opengraph-image` × 6 | 200 · `image/png` · 1200×630 |
+| Mobile drawer | fills the viewport at 360px and 390px, LTR and RTL |
+| Notion adapter | 10/10 — locale fallback, translation precedence, pagination past 100 rows, reading time |
 | Horizontal overflow | 0px at 360 / 375 / 390 / 430 / 768 / 1024 / 1440 / 2560px |
